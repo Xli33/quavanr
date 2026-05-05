@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      if (/*@cc_on!@*/ false || (!!window.MSInputMethodContext && !!document.documentMode))
+        window.location.href =
+          'https://support.dmeng.net/upgrade-your-browser.html?referrer=' +
+          encodeURIComponent(window.location.href);
+    </script>
+    <link rel="icon" href="/favicon.ico">
+    <title>Vite App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quasar@2.19.3/dist/quasar.prod.css" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@4.9.24/lib/index.css" crossorigin>
+    <script
+      <%- process.env.NODE_ENV === 'development' ? '' : 'defer' %>
+      src="https://cdn.jsdelivr.net/npm/vue@3.5.33/dist/vue.runtime.global<%= process.env.NODE_ENV === 'production' ? '.prod' : '' %>.js" crossorigin></script>
+    <% if (process.env.NODE_ENV === 'development') { %>
+    <script>
+      // 开发阶段vue(global/esm-browser)通过全局__VUE_HMR_RUNTIME__进行热更新
+      // 而 vite-plugin-checker 也会注入全局 __VUE_HMR_RUNTIME__，导致vue界面无法正常热更新
+      // 在此锁定 __VUE_HMR_RUNTIME__ 是由上面vue提供的，vue热更新恢复正常，vite-plugin-checker也依旧正常工作
+      _vuehmr_ = __VUE_HMR_RUNTIME__;
+      Object.defineProperty(window, "__VUE_HMR_RUNTIME__",{
+        get:() => _vuehmr_,
+        set(){}
+      })
+    </script>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@5.0.6/dist/vue-router.global.prod.js" defer crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.19.3/dist/quasar.umd.prod.js" defer crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@4.9.24/lib/vant.min.js" defer crossorigin></script>
+    
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

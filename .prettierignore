@@ -1,0 +1,24 @@
+# 静态资源路径
+public/
+src/assets/*
+!src/assets/locale
+
+# 常见的二进制文件类型（作为备选保险）
+*.png
+*.jpg
+*.svg
+*.webp
+*.ttf
+*.woff2
+*.woff
+
+# 打包产物与模板
+dist/
+dist-gz/
+index.html
+
+# 排除依赖
+node_modules/
+
+.vscode/*
+

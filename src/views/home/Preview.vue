@@ -4,7 +4,7 @@
     <div class="phone-top-bar flex flex-center">
       <div class="phone-notch"></div>
     </div>
-    <div class="phone-screen bg-white scroll hide-scrollbar">
+    <div class="phone-screen scroll hide-scrollbar" :class="$q.dark.isActive ? 'bg-grey-10' : 'bg-white'">
       <DndBox v-model="store.componentList" style="min-height: 100%" />
     </div>
     <div class="phone-bottom-bar flex flex-center">
@@ -14,9 +14,11 @@
 </template>
 
 <script setup lang="ts">
+import { useQuasar } from 'quasar';
 import { useEditorStore } from '@/stores/editor';
 
 const store = useEditorStore();
+const $q = useQuasar();
 </script>
 
 <style lang="less">

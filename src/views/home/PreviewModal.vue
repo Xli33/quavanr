@@ -6,7 +6,7 @@
         <div class="phone-top-bar flex flex-center">
           <div class="phone-notch"></div>
         </div>
-        <div class="phone-screen bg-white scroll hide-scrollbar">
+        <div class="phone-screen scroll hide-scrollbar" :class="$q.dark.isActive ? 'bg-grey-10' : 'bg-white'">
           <!-- Final rendering in readonly mode -->
           <DndBox v-model="store.componentList" readonly style="min-height: 100%" />
         </div>
@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useQuasar } from 'quasar';
 import { useEditorStore } from '@/stores/editor';
 import DndBox from '@/components/DndBox/index.vue';
 
@@ -30,6 +31,7 @@ const props = defineProps<{
 const emit = defineEmits(['update:modelValue']);
 
 const store = useEditorStore();
+const $q = useQuasar();
 
 const model = computed({
   get: () => props.modelValue,
@@ -70,7 +72,6 @@ const model = computed({
     border-radius: 5px;
     position: relative;
     overflow: auto;
-    background: #fff;
   }
   &bottom-bar {
     height: 25px;

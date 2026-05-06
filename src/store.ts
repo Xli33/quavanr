@@ -5,7 +5,7 @@ import i18n, { availableLocales, type availLangs } from './i18n';
 
 type GlobalConfig = {
   // 对应 Quasar.Dark.set 的参数类型，false 表示 日间模式，true 为夜间模式
-  theme: 'auto' | boolean;
+  theme: 'auto' | 'light' | 'dark';
   lang: availLangs;
 };
 

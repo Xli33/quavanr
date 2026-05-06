@@ -14,6 +14,16 @@
     border-color: var(--q-primary);
     background-color: #f5f9ff;
   }
+
+  .body--dark & {
+    background-color: #1d1d1d;
+    border-color: #333;
+
+    &:hover {
+      background-color: #262626;
+      border-color: var(--q-primary);
+    }
+  }
 }
 
 .empty-tip {
@@ -53,6 +63,10 @@
   &:hover {
     &:not(.is-selected) {
       border-color: rgba(0, 0, 0, 0.1);
+
+      .body--dark & {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
     }
     .component-actions {
       display: flex;
@@ -62,16 +76,10 @@
 
 .component-wrapper {
   position: relative;
-  // background: white;
   width: 100%;
   padding-top: 0;
   transition: padding-top 0.2s;
 }
-
-// .is-selected .component-wrapper,
-// .dnd-item:hover .component-wrapper {
-//   padding-top: 24px;
-// }
 
 .component-actions {
   display: none;
@@ -96,6 +104,10 @@
   padding: 4px;
   background: #f0f0f0;
   border-radius: 4px;
+
+  .body--dark & {
+    background: #2a2a2a;
+  }
 }
 
 .ghost {
@@ -104,12 +116,14 @@
 }
 
 .chosen {
-  // background: #fff;
   opacity: 0.5;
 }
 
 .drag {
-  // background: #fff;
   opacity: 0.5;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  .body--dark & {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
 }

@@ -16,6 +16,9 @@
           >
           <q-btn unelevated no-caps label="预览" dense class="q-px-md" color="primary" icon="visibility" @click="previewDialogOpen = true" />
           <q-btn unelevated no-caps label="导出" dense class="q-px-md" @click="handleExport" />
+          <q-separator vertical inset dark class="q-mx-sm" v-if="$q.dark.isActive" />
+          <q-separator vertical inset class="q-mx-sm" v-else />
+          <ThemeMenu />
         </div>
       </q-toolbar>
     </q-header>
@@ -49,6 +52,7 @@ import Preview from './home/Preview.vue';
 import PropsSetting from './home/PropsSetting.vue';
 import ExportDialog from './home/ExportDialog.vue';
 import PreviewModal from './home/PreviewModal.vue';
+import ThemeMenu from '@/components/ThemeMenu.vue';
 import { useEditorStore } from '@/stores/editor';
 
 const editorStore = useEditorStore();

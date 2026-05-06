@@ -1,10 +1,10 @@
 <template>
   <div v-if="comp" class="column full-height">
-    <div class="q-pa-md bg-grey-2 flex items-center">
+    <div class="q-pa-md flex items-center" :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
       <q-icon :name="comp.icon || 'settings'" size="20px" color="primary" class="q-mr-sm" />
       <div class="text-subtitle2 text-weight-bold">{{ comp.title }}</div>
       <q-space />
-      <div class="text-caption text-grey-6">{{ comp.id }}</div>
+      <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-6'">{{ comp.id }}</div>
     </div>
 
     <q-tabs

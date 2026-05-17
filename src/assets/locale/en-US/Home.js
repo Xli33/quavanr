@@ -17,4 +17,4 @@ export default {
   默认提示1: 'The program is not set to auto shutdown yet',
   默认提示2: 'Select the type you want and set the timer',
   保存成功: 'Saved'
-}
+};

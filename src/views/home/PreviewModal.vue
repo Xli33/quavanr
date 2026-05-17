@@ -6,7 +6,9 @@
         <div class="phone-top-bar flex flex-center">
           <div class="phone-notch"></div>
         </div>
-        <div class="phone-screen scroll hide-scrollbar" :class="$q.dark.isActive ? 'bg-grey-10' : 'bg-white'">
+        <div
+          class="phone-screen scroll hide-scrollbar"
+          :class="$q.dark.isActive ? 'bg-grey-10' : 'bg-white'">
           <!-- Final rendering in readonly mode -->
           <DndBox v-model="store.componentList" readonly style="min-height: 100%" />
         </div>
@@ -35,7 +37,7 @@ const $q = useQuasar();
 
 const model = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+  set: val => emit('update:modelValue', val)
 });
 </script>
 
@@ -72,6 +74,8 @@ const model = computed({
     border-radius: 5px;
     position: relative;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
   }
   &bottom-bar {
     height: 25px;

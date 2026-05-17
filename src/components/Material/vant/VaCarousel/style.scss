@@ -1,0 +1,28 @@
+.va-carousel {
+  width: 100%;
+
+  &__content {
+    border-radius: var(--va-border-radius, 8px);
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__img {
+    width: 100%;
+    display: block;
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 13px;
+    text-align: center;
+  }
+}

@@ -1,18 +1,23 @@
+.dnd-box-wrapper {
+  min-height: 120px;
+}
+
 .dnd-box {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  min-height: 100px;
+  min-height: 120px;
   width: 100%;
   padding: 8px;
-  background-color: #fafafa;
-  border: 1px dashed #e0e0e0;
-  border-radius: 8px;
-  gap: 8px;
+  background-color: #f5f7fa;
+  border: 1px dashed #d0d5dd;
+  border-radius: 6px;
+  gap: 6px;
+  overflow: visible;
 
   &:hover {
     border-color: var(--q-primary);
-    background-color: #f5f9ff;
+    background-color: #eef3ff;
   }
 
   .body--dark & {
@@ -28,8 +33,9 @@
 
 .empty-tip {
   width: 100%;
-  height: 80px;
+  height: 120px;
   pointer-events: none;
+  font-size: 13px;
 }
 
 .dnd-item {
@@ -40,10 +46,12 @@
     border-color 0.2s,
     box-shadow 0.2s;
   cursor: move;
-  overflow: hidden;
+  overflow: visible;
+  min-width: 60px;
 
   &.is-block {
     width: 100%;
+    min-height: 40px;
   }
 
   &.is-inline {
@@ -96,7 +104,7 @@
   position: relative;
   width: 100%;
   min-height: 50px;
-  pointer-events: none;
+  // pointer-events: none;
 }
 
 .nested-area {

@@ -20,7 +20,7 @@ for (const path in settingList) {
   const componentName = path.split('/')[1];
   // Map it to the name defined in the component item (e.g. q-btn)
   const def = defineList[`./${componentName}/define.ts`];
-  if (def) {
+  if (def && settingList[path]) {
     baseSettings[def.name] = settingList[path];
   }
 }

@@ -1,11 +1,12 @@
 import { relative } from 'path';
 
+const getRelativePath = filenames =>
+  filenames.map(e => relative(import.meta.dirname, e).replace(/\\/g, '/'));
+
 export default {
   '*.{js,jsx,ts,tsx,vue}': filenames => {
     // 过滤要忽略的路径（例如 public 目录）
-    const filesToLint = filenames
-      .map(e => relative(process.cwd(), e).replace(/\\/g, '/'))
-      .filter(e => !e.startsWith('public/'));
+    const filesToLint = getRelativePath(filenames).filter(e => !e.startsWith('public/'));
 
     if (!filesToLint.length) return [];
 
@@ -18,5 +19,9 @@ export default {
     ];
   },
 
-  '*.{js,jsx,ts,tsx,vue,css,scss,json,md}': ['prettier --check --ignore-unknown --experimental-cli']
+  '*.{js,jsx,ts,tsx,vue,css,less,json,md}': filenames => [
+    `prettier --check --ignore-unknown --experimental-cli ${getRelativePath(filenames)
+      .filter(e => !/package-lock.json|CHANGELOG.md|^public\/|^docs\//.test(e))
+      .join(' ')}`
+  ]
 };

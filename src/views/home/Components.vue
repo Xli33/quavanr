@@ -17,13 +17,13 @@
     <q-tab-panels v-model="activeTab" animated class="col">
       <q-tab-panel name="base" class="q-pa-md">
         <VueDraggable
-          :model-value="baseComponents"
+          :model-value="quasarComponents"
           class="row q-col-gutter-sm"
           :group="{ name: 'components', pull: 'clone', put: false }"
           :sort="false"
           :clone="handleClone"
           item-key="name">
-          <div v-for="comp in baseComponents" :key="comp.name" class="col-6">
+          <div v-for="comp in quasarComponents" :key="comp.name" class="col-6">
             <q-btn
               outline
               color="grey-4"
@@ -69,8 +69,7 @@
 import { ref } from 'vue';
 import { VueDraggable } from 'vue-draggable-plus';
 import { useEditorStore, type ComponentItem } from '@/stores/editor';
-import { baseComponents } from '@/utils/baseComponents';
-import { vantComponents } from '@/utils/vantComponents';
+import { quasarComponents, vantComponents } from '@/components/Material/components';
 
 const activeTab = ref('base');
 const store = useEditorStore();
@@ -78,13 +77,13 @@ const store = useEditorStore();
 const initComponent = (item: any): ComponentItem => {
   // Deep clone to avoid shared references between instances
   const newItem = JSON.parse(JSON.stringify(item));
-  
+
   return {
     ...newItem,
     id: Math.random().toString(36).substring(2, 9),
     props: newItem.props || {},
     slots: newItem.slots || {},
-    children: newItem.children || (newItem.name === 'box' ? [] : undefined)
+    children: newItem.children || undefined
   };
 };
 
@@ -93,7 +92,8 @@ const handleClone = (item: any): ComponentItem => {
 };
 
 const handleAddComponent = (item: any) => {
-  store.addComponent(initComponent(item));
+  const comp = store.addComponent(initComponent(item));
+  if (comp) store.selectedId = comp.id;
 };
 </script>
 

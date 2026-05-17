@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { resolveComponent, h, type VNode } from 'vue';
 import type { ComponentNode } from '@/stores/editor';
+import { componentMap } from '@/components/Material/components';
 
 export default {
   name: 'SlotRender',
@@ -11,9 +12,11 @@ export default {
     }
   },
   setup(props) {
+    const resolveComp = (name: string) => componentMap[name] || resolveComponent(name);
+
     const renderNode = (node: ComponentNode): VNode | string | null => {
       if (!node) return null;
-      
+
       // Handle Text Node
       if ('type' in node && node.type === 'text') {
         return node.content;
@@ -27,14 +30,14 @@ export default {
 
       // Prepare slots for the component
       const slots: Record<string, any> = {};
-      
+
       for (const name in componentSlots) {
         const slotContent = componentSlots[name];
         slots[name] = () => renderNodes(slotContent);
       }
 
       try {
-        const resolved = resolveComponent(componentName);
+        const resolved = resolveComp(componentName);
         // If it's a string (like 'div', 'img'), resolveComponent returns the string itself
         // If it's a registered component, it returns the component object
         return h(resolved as any, componentProps, slots);

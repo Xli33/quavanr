@@ -37,10 +37,18 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   function removeComponent(id: string) {
-    const index = componentList.value.findIndex(c => c.id === id);
-    if (index > -1) {
-      componentList.value.splice(index, 1);
-    }
+    const removeRecursive = (list: ComponentItem[]): boolean => {
+      const index = list.findIndex(c => c.id === id);
+      if (index > -1) {
+        list.splice(index, 1);
+        return true;
+      }
+      for (const item of list) {
+        if (item.children && removeRecursive(item.children)) return true;
+      }
+      return false;
+    };
+    removeRecursive(componentList.value);
   }
 
   function clear() {
@@ -63,8 +71,12 @@ export const useEditorStore = defineStore('editor', () => {
       if (item.slots) {
         for (const key in item.slots) {
           const slot = item.slots[key];
+          if (slot == null) continue;
           const nodes = Array.isArray(slot) ? slot : [slot];
-          const found = findComponent(nodes.filter(n => 'id' in n) as ComponentItem[], id);
+          const found = findComponent(
+            nodes.filter((n): n is ComponentItem => 'id' in n),
+            id
+          );
           if (found) return found;
         }
       }

@@ -14,7 +14,15 @@
           <q-btn unelevated no-caps dense color="negative" class="q-px-md" @click="clear"
             >清空</q-btn
           >
-          <q-btn unelevated no-caps label="预览" dense class="q-px-md" color="primary" icon="visibility" @click="previewDialogOpen = true" />
+          <q-btn
+            unelevated
+            no-caps
+            label="预览"
+            dense
+            class="q-px-md"
+            color="primary"
+            icon="visibility"
+            @click="previewDialogOpen = true" />
           <q-btn unelevated no-caps label="导出" dense class="q-px-md" @click="handleExport" />
           <q-separator vertical inset dark class="q-mx-sm" v-if="$q.dark.isActive" />
           <q-separator vertical inset class="q-mx-sm" v-else />

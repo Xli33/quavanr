@@ -15,4 +15,4 @@ export default {
   取消: 'Cancel',
   日期: 'Date',
   使用: 'Use'
-}
+};

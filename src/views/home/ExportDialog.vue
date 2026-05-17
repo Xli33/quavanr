@@ -1,5 +1,10 @@
 <template>
-  <q-dialog v-model="model" persistent maximized transition-show="slide-up" transition-hide="slide-down">
+  <q-dialog
+    v-model="model"
+    persistent
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down">
     <q-card class="bg-grey-1 column full-height">
       <q-bar class="bg-primary text-white">
         <q-icon name="code" />
@@ -17,7 +22,12 @@
       <q-separator />
 
       <q-card-actions align="right" class="bg-white q-pa-md">
-        <q-btn flat label="复制到剪贴板" color="primary" @click="copyToClipboard" icon="content_copy" />
+        <q-btn
+          flat
+          label="复制到剪贴板"
+          color="primary"
+          @click="copyToClipboard"
+          icon="content_copy" />
         <q-space />
         <q-btn flat label="取消" color="grey-7" v-close-popup />
         <q-btn unelevated label="确认保存" color="primary" @click="handleSave" icon="save" />
@@ -41,7 +51,7 @@ const $q = useQuasar();
 
 const model = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+  set: val => emit('update:modelValue', val)
 });
 
 const formattedJson = computed(() => {
